@@ -7,20 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task 03</title>
     <style>
+        body {
+            user-select: none;
+        }
+
         div {
             display: inline-block;
             width: 100px;
             height: 100px;
             background-color: green;
             margin: 10px;
+
+        }
+
+        .red-border {
+            border: 4px solid red;
+            width: 92px;
+            height: 92px;
         }
     </style>
 </head>
 
 <body>
-    <div></div>
-    <div></div>
-    <div></div>
+    <div id="firstDiv"></div>
+    <div id="secondDiv"></div>
+    <div id="thirdDiv"></div>
 
     <script>
         /*
@@ -29,6 +40,38 @@
         красного цвета на соответствующий div. Если зажаты клавиши Ctrl + A, то красная рамка добавляется сразу
         для всех div
         */
+
+        const firstDiv = document.querySelector("#firstDiv");
+        const secondDiv = document.querySelector("#secondDiv");
+        const thirdDiv = document.querySelector("#thirdDiv");   
+
+        window.addEventListener("keydown", setBorder);
+
+        function setBorder(e) {
+            const key = e.key;           
+            switch (key) {
+                case "1": {
+                    firstDiv.classList.toggle("red-border")
+                    break;
+                }
+                case "2": {
+                    secondDiv.classList.toggle("red-border")
+                    break;
+                }
+                case "3": {
+                    thirdDiv.classList.toggle("red-border")
+                    break;
+                }
+                default: {
+                    if (e.ctrlKey && e.code === "KeyA") {
+                        firstDiv.className = "red-border";
+                        secondDiv.className = "red-border";
+                        thirdDiv.className = "red-border";
+                    }                   
+                }
+            }
+        }
+
     </script>
 </body>
 
