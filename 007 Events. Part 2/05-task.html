@@ -153,16 +153,29 @@
             }
         ];
 
-        let uslerList = document.querySelector("#userList");
+        let userList = document.querySelector("#userList");
+        let userDescription = document.querySelector("#output");
 
         for (let index = 0; index < users.length; index++) {
             const currentUser = users[index];
             let li = document.createElement("li");
             li.textContent = currentUser.name.first + " " + currentUser.name.last;
-            li.addEventListener("mouseenter", mouseEnterHandler);
-            li.dataset.userNumber = index;
-            uslerList.append(li);
+            li.addEventListener("mouseover", getDescriptionUser);
+            li.addEventListener("mouseout", deleteDescriptionUser);
+            li.dataset.userNumber = String(index);
+            userList.append(li);
         }
+
+        function getDescriptionUser(){            
+            let i = this.dataset.userNumber;
+            userDescription.innerHTML = `возраст: ${users[i].age},<br>баланс: ${users[i].balance}$,<br>компания: ${users[i].company},<br>email: ${users[i].email}`;
+        }
+
+        function deleteDescriptionUser (){
+            userDescription.textContent = "";
+        }
+
+
     </script>
 </body>
 
